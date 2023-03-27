@@ -84,6 +84,8 @@ class PetControllerTest extends TestCase
      */
     public function it_should_be_able_to_list_all_pets(): void
     {
+        $user = User::factory()->create();
+
         $species = Species::factory()->create();
 
         $race = Race::factory()->create([
@@ -91,11 +93,12 @@ class PetControllerTest extends TestCase
         ]);
         $pets = Pet::factory(3)
             ->create([
+                'parent_id' => $user->getKey(),
                 'species_id' => $species->getKey(),
                 'race' => $race->getKey()
             ]);
 
-        $response = $this->get(route('pets.index'));
+        $response = $this->actingAs($user)->get(route('pets.index'));
 
         $response->assertOk();
         $response->assertJsonStructure([

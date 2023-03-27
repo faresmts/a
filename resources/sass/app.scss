@@ -1,8 +1,37 @@
 // Fonts
 @import url('https://fonts.bunny.net/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap');
+.font-logo {
+    font-family: 'Delicious Handrawn', sans-serif;
+}
 
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+// Custom
+.gradient-petgram {
+    background: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+}
+
+.btn-petgram-blue {
+    background: #3f5efb;
+    border: none;
+    color: white;
+}
+
+.btn-petgram-blue:hover {
+    background: #273990;
+    color: white;
+}
+
+.link-petgram {
+    text-decoration: none;
+}
+
+.img-rounded {
+    border-radius: 50%;
+}

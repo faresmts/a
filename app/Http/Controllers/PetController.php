@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ShowPetResource;
 use App\Models\Pet;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Auth;
 
 class PetController extends Controller
 {
@@ -15,7 +17,9 @@ class PetController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        return ShowPetResource::collection(Pet::all());
+        $user = User::query()->select()->where('email', '=', Auth::user()->email)->first();
+
+        return ShowPetResource::collection(Pet::query()->select()->where('parent_id', '=', $user->getKey())->get());
     }
 
     /**
